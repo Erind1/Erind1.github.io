@@ -123,7 +123,7 @@
     <div class="row"><span class="label">Password</span><span class="val">12345678</span></div>
   </div>
 
-  <a class="open-btn" href="menu.html" target="_blank">📖 Open Menu</a>
+  <a class="open-btn" href="https://erind1.github.io/hysi-menu/menu.html" target="_blank">📖 Open Menu</a>
   <p class="note">Or scan the QR code with your phone camera</p>
 
   <hr class="divider">
@@ -131,9 +131,7 @@
 </div>
 
 <script>
-  // Generate QR pointing to the menu file
-  // In production, replace this URL with your actual hosted menu URL
-  const menuUrl = window.location.href.replace('qr.html', 'menu.html');
+  const menuUrl = 'https://erind1.github.io/hysi-menu/menu.html';
 
   QRCode.toCanvas(document.getElementById('qrCanvas'), menuUrl, {
     width: 220,
