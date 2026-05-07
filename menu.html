@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restorant Piceri "HYSI" — Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #c0392b;
+    --navy: #1a2a4a;
+    --gold: #c9a84c;
+    --cream: #fdf6ec;
+    --tan: #c8a97a;
+    --light: #fff9f2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--cream);
+    font-family: 'Lato', sans-serif;
+    color: #222;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--navy);
+    text-align: center;
+    padding: 2.5rem 1rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.02) 20px, rgba(255,255,255,0.02) 40px);
+  }
+  .logo-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    letter-spacing: 1px;
+    line-height: 1.2;
+  }
+  header h1 span {
+    color: var(--gold);
+  }
+  header p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.82rem;
+    margin-top: 0.4rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .tagline {
+    color: var(--gold);
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-top: 0.8rem;
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* LANG TOGGLE */
+  .lang-bar {
+    background: var(--red);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+  .lang-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    padding: 0.6rem 2rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+  }
+  .lang-btn.active {
+    color: #fff;
+    border-bottom-color: var(--gold);
+  }
+
+  /* NAV TABS */
+  .nav-tabs {
+    background: var(--navy);
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 0;
+    padding: 0 0.5rem;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.55);
+    padding: 0.8rem 1rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .nav-tab.active, .nav-tab:hover {
+    color: #fff;
+    border-bottom-color: var(--gold);
+  }
+
+  /* CONTENT */
+  main { padding: 1.5rem 1rem 4rem; max-width: 680px; margin: 0 auto; }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* CATEGORY */
+  .category { margin-bottom: 2rem; }
+  .cat-header {
+    background: var(--red);
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.5px;
+  }
+  .cat-header.navy { background: var(--navy); }
+
+  /* ITEMS */
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.45rem 0.25rem;
+    border-bottom: 1px dotted #ddd;
+    gap: 0.5rem;
+  }
+  .item:last-child { border-bottom: none; }
+  .item-name {
+    font-size: 0.88rem;
+    color: #333;
+    flex: 1;
+    line-height: 1.3;
+  }
+  .item-price {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--red);
+    white-space: nowrap;
+    min-width: 54px;
+    text-align: right;
+  }
+
+  /* TWO COL on wider screens */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.5rem; }
+  @media (max-width: 480px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  footer strong { color: var(--gold); font-style: normal; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-icon">🍕</div>
+  <h1>Restorant Piceri <span>"HYSI"</span></h1>
+  <p>— Menu —</p>
+  <div class="tagline">Ju Faleminderit &nbsp;·&nbsp; Thank You</div>
+</header>
+
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('al')">🇦🇱 Shqip</button>
+  <button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button>
+</div>
+
+<div class="nav-tabs" id="navTabs"></div>
+
+<main id="mainContent"></main>
+
+<footer>
+  <strong>Restorant Piceri "HYSI"</strong><br>
+  Ju Faleminderit · Thank You
+</footer>
+
+<script>
+const data = {
+  al: [
+    {
+      id: 'pije', label: '☕ Pije',
+      categories: [
+        { title: 'Pije të Ngrohta', items: [
+          ['Kafe', '80 L'], ['Makiato', '100 L'], ['Makiato e madhe', '180 L'],
+          ['Cappuccino', '180 L'], ['Çaj i nxehtë', '100 L'], ['Qumesht', '150 L']
+        ]},
+        { title: 'Pije Freskuese', items: [
+          ['Ujë', '80 L'], ['Dhallë', '100 L'], ['Coca Cola', '180 L'],
+          ['Fanta', '180 L'], ['Schweppes', '180 L'], ['Sprite', '180 L'],
+          ['Bravo', '180 L'], ['Lemon Soda', '180 L'], ['Ice Tea', '180 L'], ['Red Bull', '300 L']
+        ]},
+        { title: 'Birrat', items: [
+          ['Korça', '200 L'], ['Peja', '200 L'], ['Peroni', '250 L'],
+          ['Heiniken', '300 L'], ['Paulaner', '400 L']
+        ]},
+        { title: 'Verat', navy: true, items: [
+          ['1/2l Verë e hapur', '500 L'], ['Gotë Verë', '200 L']
+        ]}
+      ]
+    },
+    {
+      id: 'mengjes', label: '🍳 Mëngjes',
+      categories: [
+        { title: 'Mëngjesi', items: [
+          ['Supë pule', '300 L'], ['Supë perime', '300 L'], ['Omletë me suxhuk', '350 L'],
+          ['Omletë me djathë', '300 L'], ['Omletë me proshutë', '300 L'],
+          ['Omletë me perime', '350 L'], ['Vezë Sy', '250 L'], ['Kos', '150 L']
+        ]}
+      ]
+    },
+    {
+      id: 'sallata', label: '🥗 Sallata',
+      categories: [
+        { title: 'Sallatat', items: [
+          ['Greke', '350 L'], ['Shopë', '400 L'], ['Mix', '350 L'],
+          ['Sallatë ton', '500 L'], ['Sallatë cezar', '500 L'], ['Sallatë jeshile', '300 L'],
+          ['Sallatë ulli', '300 L'], ['Perime Zgare', '400 L'], ['Patate frite', '300 L'],
+          ['Xaxiq', '300 L'], ['Djath Dhie', '300 L'], ['Djath i bardhë', '200 L'],
+          ['Djath Kaçkavall furre', '350 L'], ['Fokace', '350 L'], ['Bruskete', '250 L']
+        ]}
+      ]
+    },
+    {
+      id: 'pasta', label: '🍝 Pasta',
+      categories: [
+        { title: 'Pasta / Rizzoto', items: [
+          ['Spaghetti/Pene Bologneze', '500 L'], ['Spaghetti/Pene Napoli', '300 L'],
+          ['Spaghetti/Pene Pana proshutë', '500 L'], ['Spaghetti Aglio e Olio', '300 L'],
+          ['Spaghetti Tuna', '550 L'], ['Linguine/Spaghetti Fruta deti', '700 L'],
+          ['Linguine/Spaghetti Karkaleca', '700 L'], ['Linguine/Spaghetti Karkalece kungull', '850 L'],
+          ['Rizzoto Perime', '400 L'], ['Rizzoto Karkaleca', '700 L'],
+          ['Rizzoto Karkalece dhe Kungull', '850 L'], ['Rizzoto Fruta Deti', '700 L']
+        ]}
+      ]
+    },
+    {
+      id: 'gjellerat', label: '🍲 Gjellërat',
+      categories: [
+        { title: 'Gjellërat', items: [
+          ['Gullash/Tasqebap', '400 L'], ['Gullash me pure', '450 L'],
+          ['Gullash me oriz', '450 L'], ['Pasul/Fasule', '300 L'],
+          ['Pasul me mish', '450 L'], ['Turli me mish', '450 L'],
+          ['Speca te mbushura', '500 L'], ['Musaka (me porosi)', '500 L'], ['Fergese', '500 L']
+        ]}
+      ]
+    },
+    {
+      id: 'pizza', label: '🍕 Pizza',
+      categories: [
+        { title: 'Pizza', items: [
+          ['Margarita', '450 L'], ['Proshutë', '550 L'], ['Proshut - Kërpudha', '650 L'],
+          ['Proshut - Ullinj', '650 L'], ['Sallam - Pikant', '600 L'], ['Ton', '650 L'],
+          ['4 - Stinët', '650 L'], ['Kapriçoza', '650 L'], ['Vegjetariane', '600 L'],
+          ['4 Djathrat', '700 L'], ['Kërpudha', '600 L'], ['Picë Shtëpie', '650 L']
+        ]}
+      ]
+    },
+    {
+      id: 'deti', label: '🦐 Deti',
+      categories: [
+        { title: 'Produkte deti', items: [
+          ['Koc me patate frite', '1000 L'], ['Koc me perime zgare', '1200 L'],
+          ['Levrek me patate frite', '1000 L'], ['Levrek me perime zgare', '1200 L'],
+          ['Karkaleca zgare', '1000 L'], ['Karkaleca frite', '1000 L'],
+          ['Kallamar frite', '1200 L'], ['Friture mix', '2000 L']
+        ]},
+        { title: 'Produkte Zgare', items: [
+          ['Qebapa (10 cope) me sallate', '600 L'], ['Qebapa (10 cope) me patate frite', '700 L'],
+          ['Qebapa (10 cope) me oriz', '650 L'], ['Qebapa (5 cope) me sallate', '300 L'],
+          ['Qebapa (5 cope) me patate frite', '350 L'], ['Qebapa (5 cope) me oriz', '350 L'],
+          ['Pleskavic', '550 L'], ['Pleskavic e mbushur', '650 L'],
+          ['Fileto pule me patate frite', '550 L'], ['Fileto pule me oriz', '550 L'],
+          ['Fileto pule me sos kerpudhash', '650 L'], ['Kotolete pule me pure', '700 L'],
+          ['Gjysem pule me patate', '550 L'], ['Gjysem pule me oriz', '550 L'],
+          ['Berxolle vici', '1200 L'], ['Mish qingji', '1200 L'], ['Zgare Mix (2 persona)', '2200 L']
+        ]}
+      ]
+    },
+    {
+      id: 'grill', label: '🥩 Grill',
+      categories: [
+        { title: 'Grill / Zgare', items: [
+          ['Qebapa (10 cope) me sallate', '600 L'], ['Qebapa (10 cope) me patate', '700 L'],
+          ['Qebapa (10 cope) me oriz', '650 L'], ['Qebapa (5 cope) me sallate', '300 L'],
+          ['Qebapa (5 cope) me patate', '350 L'], ['Qebapa (5 cope) me oriz', '350 L'],
+          ['Pleskavic', '550 L'], ['Pleskavic e mbushur', '650 L'],
+          ['Fileto pule me patate', '550 L'], ['Fileto pule me oriz', '550 L'],
+          ['Fileto pule me sos kerpudhash', '650 L'], ['Kotolete pule me pure', '700 L'],
+          ['Gjysem pule me patate', '550 L'], ['Gjysem pule me oriz', '550 L'],
+          ['Berxolle vici', '1200 L'], ['Mish qingji', '1200 L'], ['Zgare Mix (2 persona)', '2200 L']
+        ]}
+      ]
+    }
+  ],
+  en: [
+    {
+      id: 'drinks', label: '☕ Drinks',
+      categories: [
+        { title: 'Hot Drinks', items: [
+          ['Espresso', '80 L'], ['Macchiato', '100 L'], ['Big Macchiato', '180 L'],
+          ['Cappuccino', '180 L'], ['Hot Tea', '100 L'], ['Milk', '150 L']
+        ]},
+        { title: 'Cold Drinks', items: [
+          ['Water', '80 L'], ['Dhallë', '100 L'], ['Coca Cola', '180 L'],
+          ['Fanta', '180 L'], ['Schweppes', '180 L'], ['Sprite', '180 L'],
+          ['Bravo', '180 L'], ['Lemon Soda', '180 L'], ['Ice Tea', '180 L'], ['Red Bull', '300 L']
+        ]},
+        { title: 'Beer', items: [
+          ['Korça', '200 L'], ['Peja', '200 L'], ['Peroni', '250 L'],
+          ['Paulaner', '400 L'], ['Heiniken', '300 L']
+        ]},
+        { title: 'Wine', navy: true, items: [
+          ['1/2l Wine', '500 L'], ['Glass', '200 L']
+        ]}
+      ]
+    },
+    {
+      id: 'breakfast', label: '🍳 Breakfast',
+      categories: [
+        { title: 'Breakfast', items: [
+          ['Chicken Soup', '300 L'], ['Vegetable Soup', '300 L'], ['Suxhuk Omelette', '350 L'],
+          ['Cheese Omelette', '300 L'], ['Omelette with Prosciutto', '300 L'],
+          ['Vegetable Omelette', '350 L'], ['Sunny side Eggs', '250 L'], ['Jogurt', '150 L']
+        ]}
+      ]
+    },
+    {
+      id: 'salads', label: '🥗 Salads',
+      categories: [
+        { title: 'Salads', items: [
+          ['Greek Salad', '350 L'], ['Shope Salad', '400 L'], ['Mix Salad', '350 L'],
+          ['Tuna Salad', '500 L'], ['Cesar Salad', '500 L'], ['Green Salad', '300 L'],
+          ['Olive Salad', '300 L'], ['French Fries', '300 L'], ['Tzatziki', '300 L'],
+          ['Grilled Vegetable', '400 L'], ['Goat Cheese', '300 L'], ['White Cheese', '200 L'],
+          ['Baked Kaçkavall Cheese', '350 L'], ['Focaccia', '350 L'], ['Bruschetta', '250 L']
+        ]}
+      ]
+    },
+    {
+      id: 'pasta-en', label: '🍝 Pasta',
+      categories: [
+        { title: 'Pasta / Risotto', items: [
+          ['Spaghetti/Pene Bologneze', '500 L'], ['Spaghetti/Pene Napoli', '300 L'],
+          ['Spaghetti/Pene Prosciutto and cream', '500 L'], ['Spaghetti Aglio e Olio', '300 L'],
+          ['Spaghetti Tuna', '550 L'], ['Spaghetti/Linguine Sea Food', '700 L'],
+          ['Spaghetti/Linguine Shrimps', '700 L'], ['Spaghetti/Linguine Shrimp & Zucchini', '850 L'],
+          ['Rizzoto with Vegetables', '400 L'], ['Rizzoto Shrimps', '700 L'],
+          ['Rizzoto with Shrimps & Zucchini', '850 L'], ['Rizzoto Sea Food', '700 L']
+        ]}
+      ]
+    },
+    {
+      id: 'mains-en', label: '🍲 Mains',
+      categories: [
+        { title: 'Main Dishes', items: [
+          ['Gulash', '400 L'], ['Gulash with Pure', '450 L'], ['Gulash with Rice', '450 L'],
+          ['Bean Soup', '300 L'], ['Bean Soup with Meat', '450 L'],
+          ['Vegetable Stew with Meat', '450 L'], ['Stuffed Peppers', '500 L'],
+          ['Musaka (only preorder)', '500 L'], ['Fergese', '500 L'], ['Meatballs with Sauce', '500 L']
+        ]}
+      ]
+    },
+    {
+      id: 'pizza-en', label: '🍕 Pizza',
+      categories: [
+        { title: 'Pizza', items: [
+          ['Margherita', '450 L'], ['Prosciutto', '550 L'], ['Prosciutto and Mushroom', '650 L'],
+          ['Prosciutto and Olives', '650 L'], ['Spicy Salami', '600 L'], ['Tuna', '650 L'],
+          ['4 - Seasons', '650 L'], ['Capricciosa', '650 L'], ['Vegetarian', '600 L'],
+          ['4 Cheese Pizza', '700 L'], ['Mushroom', '600 L'], ['Home Pizza', '650 L']
+        ]}
+      ]
+    },
+    {
+      id: 'seafood-en', label: '🦐 Sea Food',
+      categories: [
+        { title: 'Sea Food', items: [
+          ['Bream with Fries', '1000 L'], ['Bream with Grilled Vegetables', '1200 L'],
+          ['Sea Bass with Fries', '1000 L'], ['Sea Bass with Grilled Vegetables', '1200 L'],
+          ['Grilled Shrimps', '1000 L'], ['Fired Shrimps', '1000 L'],
+          ['Fired Calamari', '1200 L'], ['Mixed Seafood', '2000 L']
+        ]}
+      ]
+    },
+    {
+      id: 'grill-en', label: '🥩 Grill',
+      categories: [
+        { title: 'Grill', items: [
+          ['Qebapa (10 pcs) with Salad', '600 L'], ['Qebapa (10 pcs) with Fries', '700 L'],
+          ['Qebapa (10 pcs) with Rice', '650 L'], ['Qebapa (5 pcs) with Salad', '300 L'],
+          ['Qebapa (5 pcs) with Fries', '350 L'], ['Qebapa (5 pcs) with Rice', '350 L'],
+          ['Pleskavic', '550 L'], ['Stuffed Pleskavic', '650 L'],
+          ['Chicken fillet with Fries', '550 L'], ['Chicken fillet with Rice', '550 L'],
+          ['Chicken fillet with Mushroom Sauce', '650 L'], ['Schnitzel with Pure', '700 L'],
+          ['Half Chicken with Fries', '550 L'], ['Half Chicken with Rice', '550 L'],
+          ['T-Bone Steak', '1200 L'], ['Lamb Chops', '1200 L'], ['Mix Grill (2 persons)', '2200 L']
+        ]}
+      ]
+    }
+  ]
+};
+
+let currentLang = 'al';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  buildNav();
+  buildSections();
+  setTab(data[lang][0].id);
+}
+
+function buildNav() {
+  const nav = document.getElementById('navTabs');
+  nav.innerHTML = '';
+  data[currentLang].forEach(sec => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-tab';
+    btn.textContent = sec.label;
+    btn.dataset.id = sec.id;
+    btn.onclick = () => setTab(sec.id);
+    nav.appendChild(btn);
+  });
+}
+
+function buildSections() {
+  const main = document.getElementById('mainContent');
+  main.innerHTML = '';
+  data[currentLang].forEach(sec => {
+    const div = document.createElement('div');
+    div.className = 'section';
+    div.id = 'sec-' + sec.id;
+    sec.categories.forEach(cat => {
+      const catDiv = document.createElement('div');
+      catDiv.className = 'category';
+      catDiv.innerHTML = `<div class="cat-header${cat.navy ? ' navy' : ''}">${cat.title}</div>`;
+      cat.items.forEach(([name, price]) => {
+        catDiv.innerHTML += `<div class="item"><span class="item-name">${name}</span><span class="item-price">${price}</span></div>`;
+      });
+      div.appendChild(catDiv);
+    });
+    main.appendChild(div);
+  });
+}
+
+function setTab(id) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.id === id));
+  document.querySelectorAll('.section').forEach(s => s.classList.toggle('active', s.id === 'sec-' + id));
+}
+
+buildNav();
+buildSections();
+setTab(data['al'][0].id);
+</script>
+</body>
+</html>
